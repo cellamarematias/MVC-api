@@ -5,6 +5,7 @@ function PokemonViewModel() {
     self.moves = ko.observableArray([]);
     self.selectedMove = ko.observable();
     self.selectedMoveTo = ko.observable();
+    self.selectedName = ko.observable();
     // Variable observable para almacenar el Pokémon seleccionado
     self.selectedPokemon = ko.observable();
 
@@ -86,6 +87,9 @@ function PokemonViewModel() {
 
                             self.pokemon([selectedPokemonObj]);
                             self.selectedMove(item.favMove);
+                            self.selectedName(data.name);
+
+                            console.log(self.selectedName())
                         }
 
                     });
@@ -132,7 +136,20 @@ function PokemonViewModel() {
             miPokemonArr[0].favMove = self.selectedMove();
             self.pokemon(miPokemonArr);
             self.selectedPokemon(miPokemonArr);
-            console.log('actualizado', self.pokemon())
+            console.log('actualizado', self.selectedPokemon())
+
+            // actualizo pokemon del modal
+            var selectedPokemonObj =
+            {
+                height: miPokemonArr[0].height,
+                weight: miPokemonArr[0].weight,
+                moves: miPokemonArr[0].moves,
+                name: miPokemonArr[0].name,
+                sprites: miPokemonArr[0].sprites,
+                favMove: miPokemonArr[0].favMove
+            }
+
+            self.pokemon([selectedPokemonObj]);
 
             // lo recorro hasta coincidir con el name del pokemon
             arrayData.forEach(function (item) {
