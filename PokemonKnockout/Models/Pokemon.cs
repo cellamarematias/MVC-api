@@ -12,6 +12,7 @@ namespace PokemonKnockout.Models
         public Sprites Sprites { get; set; }
         public string Weight { get; set; }
         public string Height { get; set; }
+        public string FavMove { get; set; }
 
         [JsonProperty("moves")]
         public List<PokemonMove> Moves { get; set; }

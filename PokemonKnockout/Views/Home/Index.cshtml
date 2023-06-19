@@ -17,6 +17,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Fav. Move</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: pokemons">
@@ -28,6 +29,8 @@
                         See
                     </button>
                 </td>
+                <td data-bind="text: favMove !== null ? favMove : 'Not selected'"></td>
+
             </tr>
         </tbody>
     </table>
@@ -53,6 +56,7 @@
                             <th>Weight</th>
                             <th>Height</th>
                             <th>Image</th>
+                            <th>Move</th>
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: pokemon">
@@ -63,13 +67,25 @@
                             <td>
                                 <img data-bind="attr: { src: sprites.frontDefault, alt: name }" />
                             </td>
+                            <td data-bind="text: favMove"></td>
+
                         </tr>
                     </tbody>
                 </table>
+                <div>
+                    <select class="w-100 text-center" data-bind="
+                        options: moves,
+                        optionsText: function(item) {
+                            return item.move.name;
+                        },
+                        value: selectedMoveTo,
+                        event: { change: onMoveSelected },
+                        optionsCaption: 'Choose...'
+"                   ></select>
+
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
     </div>
 </div>
